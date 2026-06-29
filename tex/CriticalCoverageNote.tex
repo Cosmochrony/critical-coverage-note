@@ -74,7 +74,8 @@
     The reduction rests on two robust facts --- $\Bball \sim \Cheis\,n^4$ and the diffusive spectral gap
     $\lambda_2 \approx 4\pi^2/q^2$ --- and one scaling ansatz.
     Empirically $\xone$ falls from $0.61$ at $q=101$ to $0.15$ at $q=601$, which excludes the
-    constant-coverage (clean $\sqrt{q}$) scenario and establishes $\none(q)/q \to 0$.
+    constant-coverage (clean $\sqrt{q}$) scenario and supports the model-free conclusion
+    $\none(q)/q \to 0$.
     We isolate the governing tension $\Phi'(\xone) = \epssat\,q$ and state the analytical programme:
     derive the asymptotic law of $\xone(q)$ from a shellwise Weil--BFS novelty estimate controlled by
     $\lambda_2$, of which the depth law $\none(q)$ is then a corollary.
@@ -243,7 +244,8 @@
     The point $q = 601$ excludes the constant-coverage scenario.
     The apparent plateau $\xone = 0.222\,(401) \to 0.220\,(503)$ suggested convergence, which would have
     revived a clean asymptotic $\sqrt q$ with $\kappa \approx 0.85$; but the constant-$\xone$ reading
-    predicts $\none(601) = 21$, whereas the measurement gives $19$.
+    predicts $\none(601) = (0.22/\Cheis)^{1/4}\sqrt{601} \approx 20.8$ (i.e.\ $21$), whereas the
+    measurement gives $19$.
     The stall was an integer-rounding artefact ($\none$ held the value $19$ across $q = 503$ and the
     $q = 601$ neighbourhood), not a limit: $\xone$ resumed its decrease to $0.154$.
 
@@ -314,9 +316,10 @@
 
     \begin{itemize}[nosep]
       \item \emph{Proved / robust:} $D = 4$ growth, $\Bball \sim \Cheis n^4$ (Prop.~\ref{prop:growth});
-        $\lambda_2 = \Theta(1/q^2)$, $\approx 4\pi^2/q^2$ (Prop.~\ref{prop:gap}); the exact reduction
-        identity~\eqref{eq:reduction} (Prop.~\ref{prop:reduction}); $\none(q)/q \to 0$ (model-free, O28).
-      \item \emph{Established empirically (range-limited):} $\xone(q)$ decreases ($0.61 \to 0.15$ over
+        $\lambda_2 = \Theta(1/q^2)$, $\approx 4\pi^2/q^2$ (Prop.~\ref{prop:gap}); and the exact reduction
+        identity~\eqref{eq:reduction} (Prop.~\ref{prop:reduction}).
+      \item \emph{Established empirically / model-free (range-limited):} $\none(q)/q \to 0$ (the linear
+        law is excluded out of sample, O28); $\xone(q)$ decreases ($0.61 \to 0.15$ over
         $q = 101\text{--}601$); the constant-coverage scenario is excluded; the observed effective
         exponent of $\none$ is $\approx 0.30\text{--}0.33$.
       \item \emph{Open:} the asymptotic law of $\xone(q)$ (logarithmic vs.\ power), the ansatz~\eqref{eq:star}
