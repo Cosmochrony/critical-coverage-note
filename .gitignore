@@ -1,0 +1,11 @@
+.idea/
+pdfs/
+out/*.aux
+out/*.log
+out/*.blg
+out/*.bbl
+out/*.out
+out/*.toc
+out/*.fls
+out/*.fdb_latexmk
+out/*.synctex.gz

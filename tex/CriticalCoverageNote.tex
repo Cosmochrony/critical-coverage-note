@@ -1,0 +1,341 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{doi}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\geometry{margin=2.5cm}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Heis}{\mathrm{Heis}}
+\newcommand{\Cay}{\mathrm{Cay}}
+\newcommand{\BFS}{\mathrm{BFS}}
+\newcommand{\Bball}{\lvert B_n\rvert}
+\newcommand{\Cheis}{C_{\mathrm{Heis}}}
+\newcommand{\epssat}{\varepsilon_{\mathrm{sat}}}
+\newcommand{\xone}{x_1}
+\newcommand{\none}{n_1}
+
+\title{Critical Coverage and the Saturation Depth Problem\\[0.4em]
+\large Reducing the BFS Window-Depth Asymptotics to a Single Coverage Observable\\[0.2em]
+\large Cosmochrony --- Spectral Admissibility Sub-programme}
+
+\author{J\'{e}r\^{o}me Beau\\[0.3em]
+\small Independent Researcher\\
+\small \texttt{jerome.beau@cosmochrony.org}}
+
+\date{2026}
+
+\begin{document}
+
+  \maketitle
+
+  \begin{abstract}
+    The auto-calibrated saturation depth $\none(q)$ of the breadth-first exploration of
+    $\Heis_3(\mathbb{Z}/q\mathbb{Z})$ was the central open asymptotic variable of O25--O28~\cite{Beau2026a29,Beau2026a32}.
+    This note makes two points.
+    First, the depth problem is not a vector-space filling problem: at the window edge the cumulative
+    Weil--fingerprint rank is far from full, so $\none$ is the depth at which the creation of new
+    directions per explored vertex drops below a fixed threshold --- a stop of marginal novelty.
+    Second, and consequently, the entire asymptotic content of $\none$ collapses onto a single
+    dimensionless observable, the \emph{critical coverage}
+    \[
+      \xone(q) = \frac{\Bball_{\,n=\none}}{q^2},
+      \qquad\text{through the exact identity}\qquad
+      \none(q) = \left(\frac{\xone(q)}{\Cheis}\right)^{1/4} \sqrt{q},
+    \]
+    where $\Bball \sim \Cheis\,n^4$ (homogeneous dimension $D=4$, $\Cheis \approx 0.427$) is the
+    Heisenberg ball growth.
+    The reduction rests on two robust facts --- $\Bball \sim \Cheis\,n^4$ and the diffusive spectral gap
+    $\lambda_2 \approx 4\pi^2/q^2$ --- and one scaling ansatz.
+    Empirically $\xone$ falls from $0.61$ at $q=101$ to $0.15$ at $q=601$, which excludes the
+    constant-coverage (clean $\sqrt{q}$) scenario and establishes $\none(q)/q \to 0$.
+    We isolate the governing tension $\Phi'(\xone) = \epssat\,q$ and state the analytical programme:
+    derive the asymptotic law of $\xone(q)$ from a shellwise Weil--BFS novelty estimate controlled by
+    $\lambda_2$, of which the depth law $\none(q)$ is then a corollary.
+  \end{abstract}
+
+  \medskip
+  \noindent\textbf{Keywords.}
+  critical coverage; BFS saturation depth; window-depth asymptotics; marginal novelty; Weil
+  representation; Heisenberg group; spectral gap; projective capacity; non-injective projection;
+  spectral admissibility.
+
+  \newpage
+  \tableofcontents
+
+  \newpage
+
+  \section{The saturation-depth problem}
+    \label{sec:problem}
+
+    Let $q$ be an odd prime, $G_q = \Heis_3(\mathbb{Z}/q\mathbb{Z})$, and $\Cay(G_q, S_q)$ its Cayley
+    graph with symmetric generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
+    Breadth-first search from the identity produces spheres $S_n$ and balls $B_n = \bigcup_{m \le n} S_m$.
+    Each shell carries Weil $k=3$ fingerprint vectors in $\mathbb{C}^q$; their cumulative
+    Gram--Schmidt rank $r(n) = \sum_{m \le n}\Delta r(m)$ is monotone and bounded by $q$, and the
+    capacity-novelty density is
+    \begin{equation}
+      \sigma(n) = \frac{\Delta r(n)}{\lvert S_n\rvert}.
+      \label{eq:sigma}
+    \end{equation}
+    The auto-calibrated fitting window of O12~\cite{Beau2026a16} has upper edge
+    \begin{equation}
+      \none(q) = \text{last } n \text{ with } \bar{\sigma}(n) > \epssat,
+      \qquad \epssat = 10^{-3},
+      \label{eq:n1def}
+    \end{equation}
+    where $\bar\sigma$ is the mean over the conjugate-pair probe blocks of~\eqref{eq:sigma}.
+
+    \begin{remark}[The depth is a marginal-novelty stop, not a filling time]
+      \label{rem:marginal}
+      At the window edge the cumulative rank is far from full: $r(\none) \approx 137/307$ at $q=307$ and
+      $183/601$ at $q=601$.
+      So $\none$ is \emph{not} the depth at which the fingerprints span $\mathbb{C}^q$.
+      By~\eqref{eq:n1def} it is the depth at which the marginal rank gained per explored vertex,
+      $\sigma(n)$, first falls below the fixed threshold $\epssat$.
+      This reformulation is model-free and survives independently of the eventual asymptotic law; it is
+      also the form that transfers to the per-generation depths $n_g$, which are the same kind of object
+      (a marginal-novelty stop read off the relaxation trajectory, not a rank count).
+    \end{remark}
+
+    O25--O28~\cite{Beau2026a29,Beau2026a32} left the asymptotic law of $\none(q)$ as the central open
+    direction.
+    O28 settled its gross shape model-free: the linear hypothesis $\none \sim \hat\alpha\,q$ calibrated
+    on $q \le 211$ fails out of sample (it overpredicts $\none$ by up to $+88\%$ at $q=601$), and
+    $\none(q)/q$ decreases monotonically to $0.032$, so $\none(q)/q \to 0$.
+    The asymptotic law itself remained open.
+    The present note reduces that open law to a single observable.
+
+  \section{The critical coverage and the reduction}
+    \label{sec:reduction}
+
+    Two ingredients of the depth law are already understood.
+
+    \begin{proposition}[Volume growth, $D=4$]
+      \label{prop:growth}
+      On $\Cay(G_q, S_q)$ the homogeneous dimension is $D = 4$ (Bass--Guivarc'h; O9~\cite{Beau2026a13}),
+      so for $n \ll q$,
+      \begin{equation}
+        \Bball = \Cheis\,n^4\,(1 + o(1)),
+        \qquad \Cheis \approx 0.427,
+        \label{eq:growth}
+      \end{equation}
+      with shell ratio $\lvert S_n\rvert / n^3 \to 4\Cheis \approx 1.71$.
+      The fitted exponent is $p = 4.003$.
+    \end{proposition}
+
+    \begin{proposition}[Diffusive spectral gap]
+      \label{prop:gap}
+      The algebraic connectivity of $\Cay(G_q, S_q)$ satisfies
+      \begin{equation}
+        \lambda_2(L_{G_q}) \approx \frac{4\pi^2}{q^2},
+        \label{eq:gap}
+      \end{equation}
+      the gap of the horizontal abelianisation torus $(\mathbb{Z}/q\mathbb{Z})^2$
+      (numerically $\lambda_2\,q^2 \to \approx 39 \to 4\pi^2 = 39.48$ over $q \in \{5,\dots,19\}$).
+      The walk relaxes diffusively, and its horizontal phase space has $q^2$ vertices.
+    \end{proposition}
+
+    These fix the natural coverage variable: a diffusive walk with gap $q^{-2}$ on a space of horizontal
+    extent $q^2$ is organised by the reduced volume $x = \Bball/q^2$.
+    Define the \emph{critical coverage} at the window edge:
+
+    \begin{definition}[Critical coverage]
+      \label{def:x1}
+      \begin{equation}
+        \xone(q) = \frac{\Bball_{\,n=\none}}{q^2}
+        = \frac{\Cheis\,\none(q)^4}{q^2}\,(1 + o(1)).
+        \label{eq:x1}
+      \end{equation}
+    \end{definition}
+
+    Inverting~\eqref{eq:growth} at the crossing volume $\Bball_{\,n=\none} = \xone(q)\,q^2$ gives the
+    organising identity of this note.
+
+    \begin{proposition}[Reduction of the depth problem to the coverage problem]
+      \label{prop:reduction}
+      Exactly (to leading order in~\eqref{eq:growth}),
+      \begin{equation}
+        \none(q) = \left(\frac{\xone(q)}{\Cheis}\right)^{1/4}\sqrt{q}.
+        \label{eq:reduction}
+      \end{equation}
+      Hence the asymptotic law of $\none(q)$ \emph{is} the asymptotic law of $\xone(q)$: a constant
+      $\xone$ gives $\none = \Theta(\sqrt q)$; a decaying $\xone$ gives a sub-$\sqrt q$ law.
+      In every case $\xone \le O(1)$ keeps $\none = O(\sqrt q)$, so $\none/q \to 0$.
+    \end{proposition}
+
+    The protagonist of the saturation-depth problem is therefore $\xone(q)$, not $\none(q)$.
+
+  \section{Empirical law of the critical coverage}
+    \label{sec:data}
+
+    Table~\ref{tab:x1} reports $\none(q)$ (auto-calibrated as in~\eqref{eq:n1def}, reproducing the O28
+    production values exactly on $q \le 211$) and the derived coverage $\xone(q)$ via~\eqref{eq:x1}.
+
+    \begin{table}[ht]
+      \centering
+      \caption{Auto-calibrated saturation depth $\none(q)$, the ratio $\none/q$, and the critical
+        coverage $\xone(q) = \Cheis\,\none^4/q^2$ with $\Cheis = 0.427$.
+        Values $q \le 211$ reproduce O28~\cite{Beau2026a32}; $q \ge 307$ are out of sample.}
+      \label{tab:x1}
+      \begin{tabular}{rrrr}
+        \toprule
+        $q$ & $\none(q)$ & $\none(q)/q$ & $\xone(q)$ \\
+        \midrule
+        29  & 4  & 0.138 & 0.130 \\
+        61  & 8  & 0.131 & 0.470 \\
+        101 & 11 & 0.109 & 0.613 \\
+        151 & 13 & 0.086 & 0.535 \\
+        211 & 14 & 0.066 & 0.368 \\
+        307 & 16 & 0.052 & 0.297 \\
+        401 & 17 & 0.042 & 0.222 \\
+        503 & 19 & 0.038 & 0.220 \\
+        601 & 19 & 0.032 & 0.154 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+
+    Two readings of the same table.
+    The depth ratio $\none/q$ falls monotonically $0.138 \to 0.032$: the linear law is dead and
+    $\none/q \to 0$ (O28).
+    The coverage $\xone$ falls fast, $0.61 \to 0.15$ over $q = 101 \to 601$, tracking $\xone \sim q^{-0.76}$
+    on the available range, with a brief integer-rounding stall at $q = 401\text{--}503$ (where $\none$
+    sits on the integer $19$) before resuming.
+    The striking empirical fact is this sustained fall of the coverage: the vertex coverage at which the
+    crossing $\sigma(\none) = \epssat$ occurs keeps moving to ever-lower values as $q$ grows.
+
+  \section{Exclusion of the constant-coverage scenario}
+    \label{sec:exclusion}
+
+    By Proposition~\ref{prop:reduction} the candidate depth laws are candidate coverage laws:
+    \begin{itemize}[nosep]
+      \item $\xone \to \mathrm{const}$ $\;\Longrightarrow\;$ clean $\Theta(\sqrt q)$;
+      \item $\xone \propto (\ln q)^{-4}$ $\;\Longrightarrow\;$ $\none \approx \kappa\sqrt q/\ln q$;
+      \item $\xone \propto q^{-2/3}$ $\;\Longrightarrow\;$ $\none \propto q^{1/3}$.
+    \end{itemize}
+
+    The point $q = 601$ excludes the constant-coverage scenario.
+    The apparent plateau $\xone = 0.222\,(401) \to 0.220\,(503)$ suggested convergence, which would have
+    revived a clean asymptotic $\sqrt q$ with $\kappa \approx 0.85$; but the constant-$\xone$ reading
+    predicts $\none(601) = 21$, whereas the measurement gives $19$.
+    The stall was an integer-rounding artefact ($\none$ held the value $19$ across $q = 503$ and the
+    $q = 601$ neighbourhood), not a limit: $\xone$ resumed its decrease to $0.154$.
+
+    The two surviving readings, $\none \approx \kappa\sqrt q/\ln q$ and $\none \propto q^{1/3}$, are both
+    sub-$\sqrt q$ and remain numerically indistinguishable on the present data (each predicts
+    $\none(601) = 20$ against the measured $19$; they differ by less than one unit in $\none$ out to
+    $q \sim 10^3$).
+    The effective exponent observed over $101 \le q \le 601$ is $\approx 0.30\text{--}0.33$, below
+    $\tfrac{1}{2}$, but this is a range observation, not an established asymptotic value: the $\none$ are
+    small integers and the $503 \to 601$ step is $19 \to 19$, which dominates any power fit.
+    What is established for $\none$ is therefore: sub-linear, incompatible with $\Theta(q)$, and --- over
+    the observed range --- below $\Theta(\sqrt q)$; the precise asymptotic law is the open law of $\xone(q)$.
+
+  \section{The governing tension}
+    \label{sec:tension}
+
+    The reduction~\eqref{eq:reduction} is exact; what is \emph{not} yet proved is the law of $\xone$.
+    The structural route to it is the coverage-scaling ansatz suggested by
+    Propositions~\ref{prop:growth}--\ref{prop:gap}:
+    \begin{equation}
+      r_q(n) \approx q\,\Phi\!\left(\frac{\Bball}{q^2}\right),
+      \qquad \Phi \text{ smooth},\; \Phi(0)=0,\; \Phi \text{ increasing}.
+      \tag{$\star$}
+      \label{eq:star}
+    \end{equation}
+    This is a scaling collapse: the $q$-dependence of the whole rank trajectory is assumed to enter only
+    through the reduced coverage $x = \Bball/q^2$.
+    Granting~\eqref{eq:star}, and using $\sigma(n) = \Delta r/\lvert S_n\rvert \approx \mathrm{d}r/\mathrm{d}\Bball$
+    (the marginal density of Remark~\ref{rem:marginal}), one gets $\sigma(n) = \Phi'(x)/q$, so the window
+    criterion $\sigma(\none) = \epssat$ reads
+    \begin{equation}
+      \Phi'(\xone) = \epssat\,q.
+      \label{eq:tension}
+    \end{equation}
+    The right-hand side \emph{grows with $q$} while $\epssat = 10^{-3}$ is fixed.
+    Equation~\eqref{eq:tension} is the single mathematical front of the problem: a fixed threshold against
+    the explicit $1/q$ in $\sigma$.
+    It forces the crossing coverage $\xone$ into the steep part of $\Phi$ as $q$ grows, hence the observed
+    decay of $\xone$; whether that decay is logarithmic or a residual power is exactly the unresolved
+    behaviour of $\xone(q)$, and explaining it --- rather than fitting an exponent --- is the task.
+
+  \section{Analytical programme for the law of \texorpdfstring{$\xone(q)$}{x1(q)}}
+    \label{sec:programme}
+
+    The target is a structural law for $\xone(q)$, from which $\none(q)$ follows by~\eqref{eq:reduction}.
+    The proposed route has three steps.
+    \begin{enumerate}[nosep]
+      \item \textbf{Shellwise novelty estimate.}
+        Bound the per-shell rank increment $\Delta r(n)$ of the Weil $k=3$ fingerprints by the mixing of
+        the BFS distribution at depth $n$, controlled by the diffusive gap $\lambda_2(L_{G_q})$
+        of~\eqref{eq:gap}.
+        This is the missing derivation of the ansatz~\eqref{eq:star}: it should produce $\Phi$, not assume
+        it.
+      \item \textbf{Crossing analysis.}
+        Solve~\eqref{eq:tension} with the derived $\Phi$ to obtain $\xone(q)$, and hence the asymptotic
+        law and any logarithmic or power correction.
+      \item \textbf{Falsifiable prediction.}
+        Extend the campaign to $q \in \{809, 1009, 1201\}$ to test the predicted $\xone(q)$ directly
+        (the coverage, not a fitted exponent, is the observable).
+    \end{enumerate}
+
+    The same machinery is the bridge to the per-generation depths $n_g$: by Remark~\ref{rem:marginal} they
+    are marginal-novelty stops governed by the same relaxation $\lambda_2$, so a law for $\xone$ is the
+    template for the corresponding per-generation coverages.
+
+  \section{Status}
+    \label{sec:status}
+
+    \begin{itemize}[nosep]
+      \item \emph{Proved / robust:} $D = 4$ growth, $\Bball \sim \Cheis n^4$ (Prop.~\ref{prop:growth});
+        $\lambda_2 = \Theta(1/q^2)$, $\approx 4\pi^2/q^2$ (Prop.~\ref{prop:gap}); the exact reduction
+        identity~\eqref{eq:reduction} (Prop.~\ref{prop:reduction}); $\none(q)/q \to 0$ (model-free, O28).
+      \item \emph{Established empirically (range-limited):} $\xone(q)$ decreases ($0.61 \to 0.15$ over
+        $q = 101\text{--}601$); the constant-coverage scenario is excluded; the observed effective
+        exponent of $\none$ is $\approx 0.30\text{--}0.33$.
+      \item \emph{Open:} the asymptotic law of $\xone(q)$ (logarithmic vs.\ power), the ansatz~\eqref{eq:star}
+        and its $\Phi$, and the resolution of the tension~\eqref{eq:tension}.
+    \end{itemize}
+
+    \paragraph{Data and Code Availability.}
+      The window-depth measurement (\texttt{n1\_resumable.py}, multicore \texttt{n1\_parallel.py}), the
+      ball-growth constant (\texttt{cheis\_ballgrowth.py}, $\Cheis \approx 0.427$, $D = 4$), and the
+      spectral-gap scaling (\texttt{lambda2\_scaling.py}, $\lambda_2 q^2 \to 4\pi^2$) are in the
+      \texttt{simulation/spectral/o25} directory of the Cosmochrony repository.
+      Both depth scripts reproduce the O28 values $\{29,61,101,151,211\} \mapsto \{4,8,11,13,14\}$ exactly.
+
+    \paragraph{Acknowledgements.}
+      AI-assisted tools were used during the preparation of this work.
+      All scientific content, results, and conclusions are the sole responsibility of the author.
+
+  \newpage
+  \bibliographystyle{plain}
+  \bibliography{cosmochrony-bibliography}
+
+\end{document}
