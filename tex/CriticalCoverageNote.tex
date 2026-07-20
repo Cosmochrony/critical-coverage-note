@@ -24,8 +24,19 @@
   colorlinks=true,
   linkcolor=black,
   citecolor=black,
-  urlcolor=black
+  urlcolor=black,
+  pdftitle={Inverse-Square Critical Coverage and Constant Saturation Depth
+    from an Exact Interval Theorem},
+  pdfauthor={J\'{e}r\^{o}me Beau},
+  pdfsubject={Exact asymptotics of Weil--BFS critical coverage on finite Heisenberg graphs},
+  pdfkeywords={critical coverage, BFS saturation depth, Heisenberg group, Weil representation,
+    Fourier character, interval theorem, spectral admissibility}
 }
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
@@ -40,9 +51,12 @@
 \newcommand{\epssat}{\varepsilon_{\mathrm{sat}}}
 \newcommand{\xone}{x_1}
 \newcommand{\none}{n_1}
+\newcommand{\Tp}{T'_c}
+\newcommand{\Fq}{\mathbb{Z}/q\mathbb{Z}}
 
-\title{Critical Coverage and the Saturation Depth Problem\\[0.4em]
-\large Reducing the BFS Window-Depth Asymptotics to a Single Coverage Observable\\[0.2em]
+\title{Inverse-Square Critical Coverage and Constant Saturation Depth\\
+from an Exact Interval Theorem\\[0.4em]
+\large Weil--BFS Novelty on Heisenberg Graphs\\[0.2em]
 \large Cosmochrony --- Spectral Admissibility Sub-programme}
 
 \author{J\'{e}r\^{o}me Beau\\[0.3em]
@@ -56,36 +70,42 @@
   \maketitle
 
   \begin{abstract}
-    The auto-calibrated saturation depth $\none(q)$ of the breadth-first exploration of
-    $\Heis_3(\mathbb{Z}/q\mathbb{Z})$ was the central open asymptotic variable of O25--O28~\cite{Beau2026a29,Beau2026a32}.
-    This note makes two points.
-    First, the depth problem is not a vector-space filling problem: at the window edge the cumulative
-    Weil--fingerprint rank is far from full, so $\none$ is the depth at which the creation of new
-    directions per explored vertex drops below a fixed threshold --- a stop of marginal novelty.
-    Second, and consequently, the entire asymptotic content of $\none$ collapses onto a single
-    dimensionless observable, the \emph{critical coverage}
+    The auto-calibrated saturation depth $\none(q)$ for BFS on $\Heis_3(\Fq)$ --- the central
+    asymptotic variable of the O25--O28 window
+    calibration --- converges in probability to the constant $n_* = 22$ under uniform generic
+    block sampling, and the critical coverage
+    $\xone(q) = \lvert B_{\none}\rvert/q^2$ obeys the inverse-square law $\xone(q) \asymp q^{-2}$.
+    The mechanism is an exact algebraic reduction.
+    Every implemented three-step Weil fingerprint is a non-zero scalar multiple of a single Fourier
+    character, so the cumulative rank is a sumset cardinality,
     \[
-      \xone(q) = \frac{\Bball_{\,n=\none}}{q^2},
-      \qquad\text{through the exact identity}\qquad
-      \none(q) = \left(\frac{\xone(q)}{\Cheis}\right)^{1/4} \sqrt{q},
+      r_c(n) = \bigl\lvert \Tp + C\,I_{n+1} \bigr\rvert,
+      \qquad
+      \Tp = \{(c_2+c_3)\eta_2 + c_3\eta_3 : \eta_i \in \{-1,0,1\}\},
     \]
-    where $\Bball \sim \Cheis\,n^4$ (homogeneous dimension $D=4$, $\Cheis \approx 0.427$) is the
-    Heisenberg ball growth.
-    The reduction rests on two robust facts --- $\Bball \sim \Cheis\,n^4$ and the diffusive spectral gap
-    $\lambda_2 \approx 4\pi^2/q^2$ --- and one scaling ansatz.
-    Empirically $\xone$ falls from $0.61$ at $q=101$ to $0.15$ at $q=601$, which excludes the
-    constant-coverage (clean $\sqrt{q}$) scenario and supports the model-free conclusion
-    $\none(q)/q \to 0$.
-    We isolate the governing tension $\Phi'(\xone) = \epssat\,q$ and state the analytical programme:
-    derive the asymptotic law of $\xone(q)$ from a shellwise Weil--BFS novelty estimate controlled by
-    $\lambda_2$, of which the depth law $\none(q)$ is then a corollary.
+    with $C = c_1+c_2+c_3$ and $I_m$ the reduction of $[-m,m]$; the shellwise novelty obeys the
+    universal deterministic ceiling $\Delta r_c(n) \le 2\lvert\Tp\rvert \le 18$.
+    Exact sphere counts of the infinite discrete Heisenberg group give the strict threshold crossing
+    $s_{22} = 16{,}934 < 18/\epssat = 18{,}000 < s_{23} = 19{,}412$.
+    Deterministically, for every prime $q \ge 311$ and every admissible block sequence,
+    $\none(q) \le 22$ and $5/q^2 \le \xone(q) \le 99{,}689/q^2$; under uniform generic block sampling,
+    $\none(q) \to 22$ and $q^2\,\xone(q) \to \lvert B_{22}\rvert = 99{,}689$ in probability.
+    The measured depths ($\none = 14$ at $q=211$, $19$ at $q=601$) sit in a transitional regime
+    governed by block resonances, whose deficits produce the observed effective exponent
+    $\approx -0.76$ en route to the exact asymptotic $-2$.
+    A structural corollary is that the implemented auto-calibrated fitting window closes
+    deterministically for $q > 937{,}024$.
+    As interpretation (structural reading, not a result): the finite Weil--BFS observable has a
+    finite novelty horizon --- beyond a fixed relational depth, independent of the arithmetic size
+    of the substrate, exploration creates no above-threshold spectral novelty per vertex --- so
+    shellwise novelty is a local combinatorial phenomenon, and no continuum-scaling channel opens
+    from this observable.
   \end{abstract}
 
   \medskip
   \noindent\textbf{Keywords.}
-  critical coverage; BFS saturation depth; window-depth asymptotics; marginal novelty; Weil
-  representation; Heisenberg group; spectral gap; projective capacity; non-injective projection;
-  spectral admissibility.
+  critical coverage; BFS saturation depth; interval theorem; sumset growth; marginal novelty; Weil
+  representation; Heisenberg group; Fourier character; projective capacity; spectral admissibility.
 
   \newpage
   \tableofcontents
@@ -95,243 +115,565 @@
   \section{The saturation-depth problem}
     \label{sec:problem}
 
-    Let $q$ be an odd prime, $G_q = \Heis_3(\mathbb{Z}/q\mathbb{Z})$, and $\Cay(G_q, S_q)$ its Cayley
-    graph with symmetric generating set $S_q = \{X^{\pm 1}, Y^{\pm 1}\}$.
-    Breadth-first search from the identity produces spheres $S_n$ and balls $B_n = \bigcup_{m \le n} S_m$.
-    Each shell carries Weil $k=3$ fingerprint vectors in $\mathbb{C}^q$; their cumulative
-    Gram--Schmidt rank $r(n) = \sum_{m \le n}\Delta r(m)$ is monotone and bounded by $q$, and the
-    capacity-novelty density is
+    Let $q$ be an odd prime and $G_q = \Heis_3(\Fq)$, with multiplication
+    \[
+      (a,b,\gamma)(a',b',\gamma') = (a+a',\,b+b',\,\gamma+\gamma'+ab').
+    \]
+    Equip $G_q$ with the Cayley graph $\Cay(G_q,S_q)$ for
+    $S_q = \{X^{\pm 1},Y^{\pm 1}\}$, where $X = (1,0,0)$ and $Y = (0,1,0)$.
+    Breadth-first search from the identity produces spheres $S_n$ and balls
+    $B_n = \bigcup_{m \le n} S_m$.
+    For a block multi-index $c = (c_1, c_2, c_3) \in (\Fq)^3$, each shell element $g \in S_n$ and
+    each path $w = (s_1, s_2, s_3) \in S_q^3$ yield a $k=3$ Weil fingerprint vector in
+    $\mathbb{C}^q$: the pointwise product of the three vectors $\rho_{c_j}(g s_1 \cdots s_j)\,u$,
+    where $u$ is the uniform seed and $\rho_c$ is the $q$-dimensional Schr\"{o}dinger
+    representation of the finite Heisenberg group used in the O12 Weil-block construction,
+    $(\rho_c(a,b,\gamma)f)(x) = \psi_c(\gamma + bx)\,f(x+a)$, $\psi_c(t) = e^{2\pi i c t/q}$, of
+    O12~\cite{Beau2026a16}.
+    The cumulative Gram--Schmidt rank $r_c(n) = \sum_{m \le n}\Delta r_c(m)$ is monotone and bounded
+    by $q$, and the capacity-novelty density is
     \begin{equation}
-      \sigma(n) = \frac{\Delta r(n)}{\lvert S_n\rvert}.
+      \sigma_c(n) = \frac{\Delta r_c(n)}{\lvert S_n\rvert}.
       \label{eq:sigma}
     \end{equation}
     The auto-calibrated fitting window of O12~\cite{Beau2026a16} has upper edge
     \begin{equation}
-      \none(q) = \text{last } n \text{ with } \bar{\sigma}(n) > \epssat,
+      \none(q) = \text{last } n \le N(q) \text{ with } \bar{\sigma}(n) > \epssat,
       \qquad \epssat = 10^{-3},
       \label{eq:n1def}
     \end{equation}
-    where $\bar\sigma$ is the mean over the conjugate-pair probe blocks of~\eqref{eq:sigma}.
+    where $\bar\sigma$ is the mean of~\eqref{eq:sigma} over $M = 5$ probe blocks and
+    $N(q) = \lceil\sqrt{q}\rceil + 2$ is the processing cap of the production measurement.
 
     \begin{remark}[The depth is a marginal-novelty stop, not a filling time]
       \label{rem:marginal}
-      At the window edge the cumulative rank is far from full: $r(\none) \approx 137/307$ at $q=307$ and
-      $183/601$ at $q=601$.
+      At the window edge the cumulative rank is far from full: $r(\none) \approx 137/307$ at $q=307$
+      and $183/601$ at $q=601$.
       So $\none$ is \emph{not} the depth at which the fingerprints span $\mathbb{C}^q$.
       By~\eqref{eq:n1def} it is the depth at which the marginal rank gained per explored vertex,
-      $\sigma(n)$, first falls below the fixed threshold $\epssat$.
-      This reformulation is model-free and survives independently of the eventual asymptotic law; it is
-      also the form that transfers to the per-generation depths $n_g$, which are the same kind of object
-      (a marginal-novelty stop read off the relaxation trajectory, not a rank count).
+      $\sigma(n)$, falls below the fixed threshold $\epssat$: a stop of marginal novelty.
     \end{remark}
 
-    O25--O28~\cite{Beau2026a29,Beau2026a32} left the asymptotic law of $\none(q)$ as the central open
-    direction.
-    O28 settled its gross shape model-free: the linear hypothesis $\none \sim \hat\alpha\,q$ calibrated
-    on $q \le 211$ fails out of sample (it overpredicts $\none$ by up to $+88\%$ at $q=601$), and
-    $\none(q)/q$ decreases monotonically to $0.032$, so $\none(q)/q \to 0$.
-    The asymptotic law itself remained open.
-    The present note reduces that open law to a single observable.
+    O25--O28~\cite{Beau2026a29,Beau2026a32} identified the asymptotic law of $\none(q)$ as the
+    central open direction of the window calibration.
+    O28 rejected linear scaling out of sample and found a decreasing ratio $\none(q)/q$ over the
+    measured primes.
+    This note determines the law completely: $\none(q)$ is asymptotically \emph{constant}, and the
+    natural coverage observable decays as an exact inverse square.
 
-  \section{The critical coverage and the reduction}
-    \label{sec:reduction}
-
-    Two ingredients of the depth law are already understood.
+    Two background facts about the graph are used throughout.
 
     \begin{proposition}[Volume growth, $D=4$]
       \label{prop:growth}
-      On $\Cay(G_q, S_q)$ the homogeneous dimension is $D = 4$ (Bass--Guivarc'h; O9~\cite{Beau2026a13}),
-      so for $n \ll q$,
+      The infinite discrete Heisenberg group with the standard generators has homogeneous dimension
+      $D = 4$ (Bass--Guivarc'h~\cite{Bass1972,Guivarch1973}; O9~\cite{Beau2026a13}), so
       \begin{equation}
-        \Bball = \Cheis\,n^4\,(1 + o(1)),
+        \lvert B_n\rvert = \Cheis\,n^4\,(1 + o(1))
+        \qquad (n\to\infty),
         \qquad \Cheis \approx 0.427,
         \label{eq:growth}
       \end{equation}
       with shell ratio $\lvert S_n\rvert / n^3 \to 4\Cheis \approx 1.71$.
-      The fitted exponent is $p = 4.003$.
+      Finite-group balls agree with these infinite-group balls in the injective range of
+      Lemma~\ref{lem:isometry} below.
     \end{proposition}
 
-    \begin{proposition}[Diffusive spectral gap]
+    \begin{remark}[Diffusive spectral gap (background only)]
       \label{prop:gap}
-      The algebraic connectivity of $\Cay(G_q, S_q)$ satisfies
-      \begin{equation}
-        \lambda_2(L_{G_q}) \approx \frac{4\pi^2}{q^2},
-        \label{eq:gap}
-      \end{equation}
-      the gap of the horizontal abelianisation torus $(\mathbb{Z}/q\mathbb{Z})^2$
-      (numerically $\lambda_2\,q^2 \to \approx 39 \to 4\pi^2 = 39.48$ over $q \in \{5,\dots,19\}$).
-      The walk relaxes diffusively, and its horizontal phase space has $q^2$ vertices.
-    \end{proposition}
-
-    These fix the natural coverage variable: a diffusive walk with gap $q^{-2}$ on a space of horizontal
-    extent $q^2$ is organised by the reduced volume $x = \Bball/q^2$.
-    Define the \emph{critical coverage} at the window edge:
+      A separate numerical diagnostic finds
+      $\lambda_2(L_{G_q}) \approx 4\pi^2/q^2$, the gap of the horizontal abelianisation torus
+      $(\mathbb{Z}/q\mathbb{Z})^2$.
+      Theorem~\ref{thm:interval} below shows that this relaxation scale plays no role in the rank
+      dynamics: the fingerprint rank is a sumset cardinality, blind to mixing.
+    \end{remark}
 
     \begin{definition}[Critical coverage]
       \label{def:x1}
       \begin{equation}
-        \xone(q) = \frac{\Bball_{\,n=\none}}{q^2}
-        = \frac{\Cheis\,\none(q)^4}{q^2}\,(1 + o(1)).
+        \xone(q) = \frac{\lvert B_{\none(q)}\rvert}{q^2}.
         \label{eq:x1}
       \end{equation}
     \end{definition}
 
-    Inverting~\eqref{eq:growth} at the crossing volume $\Bball_{\,n=\none} = \xone(q)\,q^2$ gives the
-    organising identity of this note.
-
-    \begin{proposition}[Reduction of the depth problem to the coverage problem]
+    \begin{proposition}[Exact depth--coverage identity]
       \label{prop:reduction}
-      Exactly (to leading order in~\eqref{eq:growth}),
+      For $n\ge1$, set $\kappa_n=\lvert B_n\rvert/n^4$.
+      Then, exactly,
       \begin{equation}
-        \none(q) = \left(\frac{\xone(q)}{\Cheis}\right)^{1/4}\sqrt{q}.
+        \none(q) = \left(\frac{\xone(q)}{\kappa_{\none(q)}}\right)^{1/4}\sqrt{q}.
         \label{eq:reduction}
       \end{equation}
-      Hence the asymptotic law of $\none(q)$ \emph{is} the asymptotic law of $\xone(q)$: a constant
-      $\xone$ gives $\none = \Theta(\sqrt q)$; a decaying $\xone$ gives a sub-$\sqrt q$ law.
-      In every case $\xone \le O(1)$ keeps $\none = O(\sqrt q)$, so $\none/q \to 0$.
+      In the generic limit below, $\kappa_{\none(q)}\to\kappa_{22}=99{,}689/22^4$ in probability.
+      The asymptotic constant $\Cheis$ is background geometry, not a substitute for this exact
+      finite-depth coefficient.
     \end{proposition}
 
-    The protagonist of the saturation-depth problem is therefore $\xone(q)$, not $\none(q)$.
+  \section{The Fourier-character reduction}
+    \label{sec:fourier}
 
-  \section{Empirical law of the critical coverage}
-    \label{sec:data}
+    \begin{proposition}[Fingerprints are characters]
+      \label{prop:character}
+      Let $g \in G_q$, $w = (s_1,s_2,s_3) \in S_q^3$, and $g_j = g s_1 \cdots s_j =
+      (a_j, b_j, \gamma_j)$.
+      The $k=3$ fingerprint of $(g,w)$ in block $c$ is
+      \begin{equation}
+        f_{g,w,c}(x)
+        = q^{-3/2}\,A(g,w,c)\,
+          \exp\!\Bigl(\tfrac{2\pi i}{q}\Bigl(\textstyle\sum_{j=1}^{3}c_j b_j\Bigr)x\Bigr),
+        \qquad \lvert A(g,w,c)\rvert = 1.
+        \label{eq:character}
+      \end{equation}
+      The coordinates $a_j$ and the central coordinates $\gamma_j$ enter only the scalar
+      $A(g,w,c)$.
+      Consequently distinct frequencies are exactly orthogonal, and the cumulative Gram--Schmidt
+      rank equals the cardinality of the cumulative frequency set: no numerical rank tolerance is
+      mathematically relevant.
+    \end{proposition}
 
-    Table~\ref{tab:x1} reports $\none(q)$ (auto-calibrated as in~\eqref{eq:n1def}, reproducing the O28
-    production values exactly on $q \le 211$) and the derived coverage $\xone(q)$ via~\eqref{eq:x1}.
+    \begin{proof}
+      Each factor is $(\rho_{c_j}(a_j,b_j,\gamma_j)u)(x) = q^{-1/2}\psi_{c_j}(\gamma_j + b_j x)$,
+      since the uniform seed is translation invariant.
+      The pointwise product of the three factors collects the constant phases
+      $\psi_{c_j}(\gamma_j)$ into $A$ and the linear phases into the single frequency
+      $\sum_j c_j b_j$.
+    \end{proof}
+
+    \begin{remark}[Canonical block projection]
+      \label{rem:projection}
+      The pointwise product realises the block projection of O12 exactly and canonically: the
+      Hadamard map $m(f_1 \otimes f_2 \otimes f_3)(x) = f_1(x)f_2(x)f_3(x)$ intertwines the
+      diagonal action $\rho_{c_1} \otimes \rho_{c_2} \otimes \rho_{c_3}$ with $\rho_{C}$,
+      $C = c_1+c_2+c_3 \ne 0$, and is a coisometry onto the diagonal $q$-dimensional constituent
+      $\mathrm{span}\{e_x^{\otimes 3}\}$ of the triple tensor product; see
+      Gurevich--Hadani~\cite{GurevichHadani2007} for the geometric background on finite Weil
+      representations.
+      A structural consequence is that the rank observable is blind to the central coordinate: with
+      the uniform seed, $\gamma$ and $a$ contribute unimodular scalars only.
+      Sensitivity to the central extension would require a different seed or a matrix-coefficient
+      observable, which would define a different, separately calibrated problem.
+    \end{remark}
+
+  \section{The exact interval theorem}
+    \label{sec:interval}
+
+    Write $\pi_q:\mathbb{Z}\to\Fq$ for the reduction and $I_m = \pi_q([-m,m])$.
+    For a block $c$ with $C = c_1+c_2+c_3 \ne 0$ define
+    \begin{equation}
+      \Tp = \{(c_2+c_3)\eta_2 + c_3\eta_3 : \eta_2,\eta_3 \in \{-1,0,1\}\}
+      \subseteq \Fq,
+      \qquad 0 \in \Tp = -\Tp,
+      \quad \lvert\Tp\rvert \le 9.
+      \label{eq:Tprime}
+    \end{equation}
+
+    \begin{lemma}[$b$-marginal of the ball]
+      \label{lem:bmarg}
+      For every $n \ge 0$, the set of $b$-coordinates of $B_n$ is exactly $I_n$; in particular it
+      has $\min(2n+1, q)$ elements.
+    \end{lemma}
+
+    \begin{proof}
+      The map $\beta:(a,b,\gamma)\mapsto b$ is a homomorphism to $(\Fq,+)$.
+      Moreover,
+      \[
+        \beta(S_q)=\{\pi_q(-1),0,\pi_q(1)\}.
+      \]
+      Thus $\beta(B_n) \subseteq I_n$; conversely $Y^k \in B_n$ for
+      $\lvert k\rvert \le n$.
+    \end{proof}
+
+    \begin{theorem}[Exact interval formula]
+      \label{thm:interval}
+      For every prime $q$, every block with $C \ne 0$, and every $n \ge 0$,
+      \begin{equation}
+        r_c(n) = \bigl\lvert\, \Tp + C\,I_{n+1} \,\bigr\rvert.
+        \label{eq:interval}
+      \end{equation}
+    \end{theorem}
+
+    \begin{proof}
+      By Proposition~\ref{prop:character} the rank is the cardinality of the cumulative frequency
+      set $F(n)$.
+      With $\eta_i = \beta(s_i) \in \{-1,0,1\}$ and $b_j = b + \eta_1 + \cdots + \eta_j$,
+      \begin{equation}
+        \textstyle\sum_{j=1}^{3} c_j b_j
+        = C\,b + C\eta_1 + (c_2+c_3)\eta_2 + c_3\eta_3 .
+        \label{eq:frequency}
+      \end{equation}
+      All $27$ values of $(\eta_1,\eta_2,\eta_3)$ are realised at every start element (each
+      $\eta$-value is realised by a generator), and by Lemma~\ref{lem:bmarg} every $b \in I_n$ is
+      realised in $B_n$.
+      Hence $F(n) = C\,I_n + C\{-1,0,1\} + \Tp = C\,I_{n+1} + \Tp$, using
+      $I_n + I_1 = I_{n+1}$.
+    \end{proof}
+
+    The coefficient of $\eta_1$ in~\eqref{eq:frequency} is exactly $C$, the step of the frequency
+    progression: the first path increment is absorbed into the same progression as the ball
+    coordinate.
+    The $27$ nominal centres therefore act through at most $9$ progression classes, which is the
+    content of the following universal bound.
+
+    \begin{corollary}[Universal deterministic bounds]
+      \label{cor:bounds}
+      For every prime $q$ and every block with $C \ne 0$:
+      \begin{enumerate}[nosep]
+        \item $\Delta r_c(n) \le 2\lvert\Tp\rvert \le 18$ for every $n \ge 1$, and
+          $r_c(0) \le 27$;
+        \item $\Delta r_c(n) \ge 2$ whenever $r_c(n-1) \le q-2$.
+      \end{enumerate}
+    \end{corollary}
+
+    \begin{proof}
+      (i) $F(n)\setminus F(n-1) \subseteq (\Tp + C\pi_q(n+1)) \cup (\Tp - C\pi_q(n+1))$.
+      (ii) Multiplying by $C^{-1}$, $C^{-1}F(n) = W + \{-1,0,1\}$ with $W = C^{-1}\Tp + I_n$ a
+      union of maximal cyclic arcs; adding $\{-1,0,1\}$ extends every maximal arc by one point on
+      each side, so the growth is at least $2$ unless the complement of $W$ is a single point.
+    \end{proof}
+
+    Part (ii) explains the slow blocks observed in the O25 pipeline~\cite{Beau2026a29}, which add
+    exactly two directions per shell: they are the fully resonant blocks of the classification
+    below.
+
+    \begin{theorem}[Shellwise law and resonances]
+      \label{thm:shellwise}
+      Let $q\ge11$, fix a block with $C \ne 0$, and let $1 \le n \le (q-3)/2$.
+      Define the blocked set
+      $R(n) = \{t \in \Tp : \exists\,t' \in \Tp,\ \exists\,m \in [1, 2n+1],\ t'-t = C\pi_q(m)\}$
+      and the transient count
+      $\tau_c(n) = \#\{\{t,t''\} \subseteq \Tp : t''-t = 2C\pi_q(n+1),\ t \notin R(n),\
+      t'' \notin -R(n)\}$.
+      Then
+      \begin{equation}
+        \Delta r_c(n) = 2\bigl(\lvert\Tp\rvert - \lvert R(n)\rvert\bigr) - \tau_c(n).
+        \label{eq:shellwise}
+      \end{equation}
+      Moreover:
+      \begin{enumerate}[nosep]
+        \item a stable resonance $t'-t = C\,m$ activates at every depth
+          $n \ge \lceil (m-1)/2 \rceil$ and its deficit is even and non-decreasing in $n$;
+        \item $\lvert\Tp\rvert < 9$ iff $(c_2+c_3)/c_3 \in \{0, \pm 1, \pm 2, \pm\tfrac12\}$ in
+          $\mathbb{F}_q$, with $\lvert\Tp\rvert \in \{3, 5, 7\}$ in the respective degenerate
+          cases;
+        \item each degeneracy, stable-resonance, or transient condition is a non-trivial linear
+          condition on $(c_1,c_2,c_3)$, so under uniform generic sampling each has probability at
+          most $1/(q-4)$.
+      \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+      The right-edge candidate $t + C\pi_q(n+1)$ lies in $F(n-1) = \Tp + C I_n$ iff
+      $t'-t = C\pi_q(n+1-j)$ for some $j \in [-n,n]$, i.e.\ iff $t \in R(n)$ with
+      $m = n+1-j \in [1, 2n+1]$; the left edge is the mirror case under $\Tp = -\Tp$, so the two
+      blocked counts are equal.
+      A right candidate coincides with a left candidate iff $t''-t = 2C\pi_q(n+1)$, and each such
+      pair with both members new is counted once, giving $-\tau_c(n)$.
+      For (ii), a collision $(c_2+c_3)\Delta_2 + c_3\Delta_3 \equiv 0$ with
+      $(\Delta_2,\Delta_3) \ne (0,0)$, $\lvert\Delta_i\rvert \le 2$, forces the stated ratio; each
+      degenerate ratio yields the stated cardinality by direct enumeration.
+      For (iii), each condition is a non-trivial linear form on $(c_1,c_2,c_3)$ (for stable and
+      transient resonances the coefficient of $c_1$ is $m \ne 0$), hence has at most $q^2$
+      solutions, while the generic set has $(q-1)(q^2-3q+3) \ge q^2(q-4)$ elements.
+    \end{proof}
+
+  \section{Exact spheres and the limiting depth}
+    \label{sec:spheres}
+
+    The limiting depth is governed by the sphere sizes $s_n$ of the \emph{infinite} discrete
+    Heisenberg group $H_3(\mathbb{Z})$ with the same generators, whose exact word metric is given
+    by Blach\`{e}re~\cite{Blachere2003}.
+    The values below are exact integer BFS counts of $H_3(\mathbb{Z})$ to depth $31$.
 
     \begin{table}[ht]
       \centering
-      \caption{Auto-calibrated saturation depth $\none(q)$, the ratio $\none/q$, and the critical
-        coverage $\xone(q) = \Cheis\,\none^4/q^2$ with $\Cheis = 0.427$.
-        Values $q \le 211$ reproduce O28~\cite{Beau2026a32}; $q \ge 307$ are out of sample.}
+      \caption{Exact sphere and ball sizes of $H_3(\mathbb{Z})$ near the threshold, and the
+        novelty bound $18/s_n$ against $\epssat = 10^{-3}$.
+        The crossing between $n = 22$ and $n = 23$ is strict, with margins $+6.3\%$ and $-7.3\%$.}
+      \label{tab:spheres}
+      \begin{tabular}{rrrr}
+        \toprule
+        $n$ & $s_n$ & $\lvert B_n\rvert$ & $18/s_n$ \\
+        \midrule
+        19 & 10{,}780 & 55{,}453  & $1.670 \times 10^{-3}$ \\
+        20 & 12{,}626 & 68{,}079  & $1.426 \times 10^{-3}$ \\
+        21 & 14{,}676 & 82{,}755  & $1.226 \times 10^{-3}$ \\
+        22 & 16{,}934 & 99{,}689  & $1.063 \times 10^{-3}$ \\
+        23 & 19{,}412 & 119{,}101 & $0.927 \times 10^{-3}$ \\
+        24 & 22{,}124 & 141{,}225 & $0.814 \times 10^{-3}$ \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+
+    Early values are $s_1,\dots,s_5 = 4, 12, 36, 82, 164$, matching the production BFS; beyond the
+    table, $s_{25},\dots,s_{31} = 25{,}076$, $28{,}280$, $31{,}748$, $35{,}486$, $39{,}508$,
+    $43{,}826$, $48{,}444$.
+    On $[1,31]$ the sequence $s_n$ is strictly increasing and never equals $18{,}000$, so
+    \begin{equation}
+      n_*(\epssat) = \max\{n : 18/s_n > \epssat\} = 22,
+      \qquad
+      K = \lvert B_{22}\rvert = 99{,}689 .
+      \label{eq:nstar}
+    \end{equation}
+
+    \begin{lemma}[Central extent and ball isometry]
+      \label{lem:isometry}
+      In $H_3(\mathbb{Z})$, $\max_{g \in B_n}\lvert\gamma(g)\rvert = \lfloor n^2/4\rfloor$.
+      If $q > \max(2n,\, 2\lfloor n^2/4\rfloor)$, the reduction $H_3(\mathbb{Z}) \to G_q$ is
+      injective and distance-preserving on $B_n$, so $s_m(q) = s_m$ and
+      $\lvert B_m(q)\rvert = \lvert B_m\rvert$ for all $m \le n$.
+    \end{lemma}
+
+    \begin{proof}
+      $\gamma$ changes only on $Y^{\pm}$-steps, by the current value of $a$; with $p$ $X$-steps
+      and $r$ $Y$-steps, $p + r \le n$, one gets $\lvert\gamma\rvert \le pr \le \lfloor
+      n^2/4\rfloor$, attained by $X^{\lfloor n/2\rfloor}Y^{n - \lfloor n/2\rfloor}$.
+      If $g \ne g' \in B_n$ reduce to the same element, $q$ divides $a-a'$ with
+      $\lvert a-a'\rvert \le 2n < q$, so $a = a'$, likewise $b = b'$, and then $q$ divides
+      $\gamma-\gamma'$ with $\lvert\gamma-\gamma'\rvert \le 2\lfloor n^2/4\rfloor < q$: a
+      contradiction.
+      If some word of length $\ell < d_{\mathbb{Z}}(g)$ evaluated to the reduction of $g$ in
+      $G_q$, its evaluation in $H_3(\mathbb{Z})$ would lie in $B_\ell \subseteq B_n$ and reduce to
+      the same element while being distinct from $g$, contradicting injectivity.
+    \end{proof}
+
+    \begin{lemma}[Cubic sphere lower bound]
+      \label{lem:cubic}
+      In $H_3(\mathbb{Z})$, $s_n \ge \tfrac{2}{3}(n^3 - n)$ for every $n \ge 2$.
+      Consequently $s_n > 18{,}000$ for every $n \ge 23$ (exact BFS for $23 \le n \le 31$, the
+      bound for $n \ge 31$).
+    \end{lemma}
+
+    \begin{proof}
+      Fix $a, b \ge 1$ with $a + b = n$ and signs $\epsilon, \delta \in \{\pm 1\}$.
+      A word in $X^{\epsilon}, Y^{\delta}$ with $a$ $X$-steps and $b$ $Y$-steps evaluates to
+      $(\epsilon a, \delta b, \epsilon\delta k)$ where $k = \sum_{i=1}^{b} x_i$ and
+      $0 \le x_1 \le \cdots \le x_b \le a$ counts the $X$-steps preceding the $i$-th $Y$-step.
+      Every $k \in [0, ab]$ is attained (partitions in an $a \times b$ box), and the
+      abelianisation bound gives distance exactly $n$, so
+      $s_n \ge 4\sum_{a=1}^{n-1}\bigl(a(n-a)+1\bigr) \ge \tfrac{2}{3}(n^3-n)$; at $n = 31$ this is
+      $19{,}840 > 18{,}000$, and the bound is increasing.
+    \end{proof}
+
+  \section{Main theorem}
+    \label{sec:main}
+
+    \begin{theorem}[Constant saturation depth and inverse-square coverage]
+      \label{thm:main}
+      Let $q\ge311$ be prime, $\epssat = 10^{-3}$, $M = 5$, and let $\none(q)$ be the
+      statistic~\eqref{eq:n1def} with cap $N(q) = \lceil\sqrt{q}\rceil + 2$.
+      \begin{enumerate}[nosep]
+        \item \textbf{Deterministic part.}
+          For arbitrary blocks with $C_i \ne 0$:
+          \begin{equation}
+            \none(q) \le 22,
+            \qquad
+            \frac{5}{q^2} \le \xone(q) \le \frac{99{,}689}{q^2},
+          \end{equation}
+          so $\xone(q) \asymp q^{-2}$ and $\xone(q) \to 0$ deterministically; in particular the
+          positive-edge scenario ($\xone \ge c > 0$) and every logarithmic law are excluded.
+        \item \textbf{Probabilistic part.}
+          If the $M$ blocks are drawn independently and uniformly from the generic set
+          $\{c \in (\mathbb{F}_q^{\times})^3 : C \ne 0\}$, then
+          \begin{equation}
+            \mathbb{P}\bigl(\none(q) = 22\bigr) \ge 1 - \frac{5640}{q-4},
+          \end{equation}
+          hence $\none(q) \to 22$ and $q^2\,\xone(q) \to K = 99{,}689$ in probability.
+      \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+      (i) For $22 < n \le N(q)$, Corollary~\ref{cor:bounds} gives
+      $\bar\sigma(n) \le 18/s_n(q)$.
+      The cap satisfies $2N(q) \le 2\sqrt q+6<q$ and
+      $2\lfloor N(q)^2/4\rfloor \le q/2+3\sqrt q+9/2<q$ for $q \ge 311$, so
+      Lemma~\ref{lem:isometry} identifies $s_n(q) = s_n$ on the whole computed range, and
+      $s_n > 18{,}000$ for every $n \ge 23$ by Lemma~\ref{lem:cubic}; hence
+      $\bar\sigma(n) < \epssat$ throughout $(22, N(q)]$ and $\none \le 22$.
+      Since $r_c(0) \le 27 \le q-2$, Corollary~\ref{cor:bounds} gives $\Delta r_c(1) \ge 2$ and
+      $\bar\sigma(1) \ge 1/2 > \epssat$, so $\none \ge 1$ and
+      $\lvert B_{\none}(q)\rvert \ge \lvert B_1(q)\rvert = 5$; on the other side,
+      $\lvert B_{\none}(q)\rvert \le \lvert B_{22}(q)\rvert = \lvert B_{22}\rvert = 99{,}689$ by
+      ball monotonicity and Lemma~\ref{lem:isometry} (which applies at depth $22$ since
+      $q \ge 311 > 2\lfloor 22^2/4 \rfloor = 242$).
+      (ii) Call a block clean if $\lvert\Tp\rvert = 9$, $R(22) = \emptyset$, and
+      $\tau_c(22) = 0$.
+      If all $M$ blocks are clean, Theorem~\ref{thm:shellwise} gives $\Delta r_{c_i}(22) = 18$ and
+      $\bar\sigma(22) = 18/16{,}934 > \epssat$, so $\none = 22$ by part (i).
+      Cleanliness fails on at most $24 \times 47 = 1128$ linear conditions per block (stable
+      resonances with $m \le 45$, the transient $m = 46$, and the degeneracies), each of
+      probability at most $1/(q-4)$ by Theorem~\ref{thm:shellwise}(iii); a union bound over $M=5$
+      blocks gives the constant $5640$.
+    \end{proof}
+
+    \begin{remark}[The probability bound is conservative]
+      \label{rem:conservative}
+      The bound $1 - 5640/(q-4)$ is asymptotic and deliberately coarse: it is non-informative for
+      $q \le 5644$ and weak well beyond, which does not affect the convergence since
+      $5640/(q-4) \to 0$.
+      Moreover $\none = 22$ only requires $\sum_i \Delta r_{c_i}(22) > \epssat M s_{22} = 84.67$,
+      i.e.\ a total five-block deficit at depth $22$ of at most $5$, so the clean event is
+      sufficient but far from necessary.
+    \end{remark}
+
+    \begin{remark}[Threshold stability]
+      \label{rem:threshold}
+      For every fixed $\varepsilon \in (0,1)$ the same proof gives
+      $\none(q) \to n_*(\varepsilon) = \max\{n : 18/s_n > \varepsilon\}$ and
+      $q^2 \xone(q) \to \lvert B_{n_*(\varepsilon)}\rvert$: the qualitative class --- constant
+      depth, inverse-square coverage --- is threshold-independent; only the derived constant
+      changes.
+    \end{remark}
+
+    \begin{corollary}[The auto-calibrated window closes at large $q$]
+      \label{cor:window}
+      The implemented lower window edge of O12~\cite{Beau2026a16} is the proxy
+      $n_0(q)=\max\{2,\lceil(q/4)^{1/4}\rceil\}$.
+      For $q > 4\cdot22^4 = 937{,}024$, $n_0(q) \ge 23 > 22 \ge \none(q)$: the auto-calibrated
+      fitting window $[n_0, \none]$ is deterministically empty.
+      Window-based exponent extraction on this observable is therefore confined to
+      $q \le 937{,}024$.
+    \end{corollary}
+
+  \section{The transitional regime and the measured coverage}
+    \label{sec:data}
+
+    Table~\ref{tab:x1} reports the measured $\none(q)$ (auto-calibrated as in~\eqref{eq:n1def},
+    reproducing the O28 production values exactly on $q \le 211$) and the exact coverage
+    $\xone(q)$ via~\eqref{eq:x1}.
+
+    \begin{table}[ht]
+      \centering
+      \caption{Measured saturation depth $\none(q)$, the ratio $\none/q$, and the critical
+        coverage $\xone(q) = \lvert B_{\none(q)}\rvert/q^2$ using exact infinite-Heisenberg ball
+        counts (the finite balls are isometric at every listed depth).
+        Values $q \le 211$ reproduce O28~\cite{Beau2026a32}.}
       \label{tab:x1}
       \begin{tabular}{rrrr}
         \toprule
         $q$ & $\none(q)$ & $\none(q)/q$ & $\xone(q)$ \\
         \midrule
-        29  & 4  & 0.138 & 0.130 \\
-        61  & 8  & 0.131 & 0.470 \\
-        101 & 11 & 0.109 & 0.613 \\
+        29  & 4  & 0.138 & 0.161 \\
+        61  & 8  & 0.131 & 0.482 \\
+        101 & 11 & 0.109 & 0.616 \\
         151 & 13 & 0.086 & 0.535 \\
         211 & 14 & 0.066 & 0.368 \\
-        307 & 16 & 0.052 & 0.297 \\
-        401 & 17 & 0.042 & 0.222 \\
-        503 & 19 & 0.038 & 0.220 \\
+        307 & 16 & 0.052 & 0.296 \\
+        401 & 17 & 0.042 & 0.221 \\
+        503 & 19 & 0.038 & 0.219 \\
         601 & 19 & 0.032 & 0.154 \\
         \bottomrule
       \end{tabular}
     \end{table}
 
-    Two readings of the same table.
-    The depth ratio $\none/q$ falls monotonically $0.138 \to 0.032$: the linear law is dead and
-    $\none/q \to 0$ (O28).
-    The coverage $\xone$ falls fast, $0.61 \to 0.15$ over $q = 101 \to 601$, tracking $\xone \sim q^{-0.76}$
-    on the available range, with a brief integer-rounding stall at $q = 401\text{--}503$ (where $\none$
-    sits on the integer $19$) before resuming.
-    The striking empirical fact is this sustained fall of the coverage: the vertex coverage at which the
-    crossing $\sigma(\none) = \epssat$ occurs keeps moving to ever-lower values as $q$ grows.
+    The measured depths lie below the limit $22$ and climb toward it, and
+    Theorem~\ref{thm:shellwise} identifies the mechanism: at accessible $q$ the expected number of
+    active stable-resonance conditions per block at depth $n$ is of order $24(2n+1)/q = O(1)$, so
+    resonance deficits keep $\Delta r$ below its ceiling $18$ and trigger the crossing early.
+    As $q$ grows the resonance conditions thin out at rate $O(n/q)$, the deficits vanish, and
+    $\none$ locks onto $22$; the coarse bound of Theorem~\ref{thm:main} guarantees this only for
+    $q \gtrsim 10^4$--$10^5$, and the measured trajectory ($14$ at $q=211$, $19$ at $q=601$) is
+    consistent with that timetable.
+    The transitional effective exponent of $\xone$ over $101 \le q \le 601$, approximately
+    $-0.76$, is the shadow of $\lvert B_{\none(q)}\rvert$ still growing while $q^{-2}$ pulls the
+    ratio down; the asymptotic exponent is exactly $-2$.
 
-  \section{Exclusion of the constant-coverage scenario}
-    \label{sec:exclusion}
+    \begin{remark}[Prospective finite-$q$ resonance heuristic]
+      \label{rem:prediction}
+      At $q \in \{809, 1009, 1201\}$ the expected number of active resonance conditions per block
+      near depth $22$ is still of order one.
+      The resulting heuristic --- not a consequence of Theorem~\ref{thm:main} --- predicts
+      $\none(q)<22$ there, with stabilisation at $\none=22$ only for
+      $q \sim 10^4$--$10^5$.
+      It is a pre-stated discriminating test for any future measurement campaign at those primes.
+    \end{remark}
 
-    By Proposition~\ref{prop:reduction} the candidate depth laws are candidate coverage laws:
-    \begin{itemize}[nosep]
-      \item $\xone \to \mathrm{const}$ $\;\Longrightarrow\;$ clean $\Theta(\sqrt q)$;
-      \item $\xone \propto (\ln q)^{-4}$ $\;\Longrightarrow\;$ $\none \approx \kappa\sqrt q/\ln q$;
-      \item $\xone \propto q^{-2/3}$ $\;\Longrightarrow\;$ $\none \propto q^{1/3}$.
-    \end{itemize}
+  \section{Degeneracy of the coverage-collapse ansatz}
+    \label{sec:collapse}
 
-    The point $q = 601$ excludes the constant-coverage scenario.
-    The apparent plateau $\xone = 0.222\,(401) \to 0.220\,(503)$ suggested convergence, which would have
-    revived a clean asymptotic $\sqrt q$ with $\kappa \approx 0.85$; but the constant-$\xone$ reading
-    predicts $\none(601) = (0.22/\Cheis)^{1/4}\sqrt{601} \approx 20.8$ (i.e.\ $21$), whereas the
-    measurement gives $19$.
-    The stall was an integer-rounding artefact ($\none$ held the value $19$ across $q = 503$ and the
-    $q = 601$ neighbourhood), not a limit: $\xone$ resumed its decrease to $0.154$.
-
-    The two surviving readings, $\none \approx \kappa\sqrt q/\ln q$ and $\none \propto q^{1/3}$, are both
-    sub-$\sqrt q$ and remain numerically indistinguishable on the present data (each predicts
-    $\none(601) = 20$ against the measured $19$; they differ by less than one unit in $\none$ out to
-    $q \sim 10^3$).
-    The effective exponent observed over $101 \le q \le 601$ is $\approx 0.30\text{--}0.33$, below
-    $\tfrac{1}{2}$, but this is a range observation, not an established asymptotic value: the $\none$ are
-    small integers and the $503 \to 601$ step is $19 \to 19$, which dominates any power fit.
-    What is established for $\none$ is therefore: sub-linear, incompatible with $\Theta(q)$, and --- over
-    the observed range --- below $\Theta(\sqrt q)$; the precise asymptotic law is the open law of $\xone(q)$.
-
-  \section{The governing tension}
-    \label{sec:tension}
-
-    The reduction~\eqref{eq:reduction} is exact; what is \emph{not} yet proved is the law of $\xone$.
-    The structural route to it is the coverage-scaling ansatz suggested by
-    Propositions~\ref{prop:growth}--\ref{prop:gap}:
+    A natural structural route to the law of $\xone$ would have been the scaling collapse
     \begin{equation}
       r_q(n) \approx q\,\Phi\!\left(\frac{\Bball}{q^2}\right),
-      \qquad \Phi \text{ smooth},\; \Phi(0)=0,\; \Phi \text{ increasing}.
+      \qquad \Phi \text{ smooth},\; \Phi(0)=0,\; \Phi \text{ increasing},
       \tag{$\star$}
       \label{eq:star}
     \end{equation}
-    This is a scaling collapse: the $q$-dependence of the whole rank trajectory is assumed to enter only
-    through the reduced coverage $x = \Bball/q^2$.
-    Granting~\eqref{eq:star}, and using $\sigma(n) = \Delta r/\lvert S_n\rvert \approx \mathrm{d}r/\mathrm{d}\Bball$
-    (the marginal density of Remark~\ref{rem:marginal}), one gets $\sigma(n) = \Phi'(x)/q$, so the window
-    criterion $\sigma(\none) = \epssat$ reads
-    \begin{equation}
-      \Phi'(\xone) = \epssat\,q.
-      \label{eq:tension}
-    \end{equation}
-    The right-hand side \emph{grows with $q$} while $\epssat = 10^{-3}$ is fixed.
-    Equation~\eqref{eq:tension} is the single mathematical front of the problem: a fixed threshold against
-    the explicit $1/q$ in $\sigma$.
-    It forces the crossing coverage $\xone$ into the steep part of $\Phi$ as $q$ grows, hence the observed
-    decay of $\xone$; whether that decay is logarithmic or a residual power is exactly the unresolved
-    behaviour of $\xone(q)$, and explaining it --- rather than fitting an exponent --- is the task.
+    which would put the whole $q$-dependence of the rank trajectory into the reduced coverage
+    $x = \Bball/q^2$ and reduce the threshold condition to a front equation
+    $\Phi'(\xone) = \epssat\,q$.
 
-  \section{Analytical programme for the law of \texorpdfstring{$\xone(q)$}{x1(q)}}
-    \label{sec:programme}
+    \begin{proposition}[The collapse is degenerate at the threshold front]
+      \label{prop:collapse}
+      By Theorem~\ref{thm:interval}, $r_c(n) \le 9(2n+3)$.
+      Set $n=\lfloor\alpha\sqrt q\rfloor$ with fixed, sufficiently small $\alpha>0$ so that the
+      finite ball is in the injective regime of Lemma~\ref{lem:isometry}.
+      Then $r_c(n)=O(\sqrt q)=o(q)$ while
+      $\lvert B_n\rvert/q^2\to\Cheis\alpha^4>0$.
+      Hence~\eqref{eq:star} forces $\Phi$ to vanish on a non-trivial interval adjacent to zero.
+      It cannot control the threshold front $\xone(q)\to0$: the natural support scale of the rank
+      is $n/q$, not $\lvert B_n\rvert/q^2$.
+    \end{proposition}
 
-    The target is a structural law for $\xone(q)$, from which $\none(q)$ follows by~\eqref{eq:reduction}.
-    The proposed route has three steps.
-    \begin{enumerate}[nosep]
-      \item \textbf{Shellwise novelty estimate.}
-        Bound the per-shell rank increment $\Delta r(n)$ of the Weil $k=3$ fingerprints by the mixing of
-        the BFS distribution at depth $n$, controlled by the diffusive gap $\lambda_2(L_{G_q})$
-        of~\eqref{eq:gap}.
-        This is the missing derivation of the ansatz~\eqref{eq:star}: it should produce $\Phi$, not assume
-        it.
-      \item \textbf{Crossing analysis.}
-        Solve~\eqref{eq:tension} with the derived $\Phi$ to obtain $\xone(q)$, and hence the asymptotic
-        law and any logarithmic or power correction.
-      \item \textbf{Falsifiable prediction.}
-        Extend the campaign to $q \in \{809, 1009, 1201\}$ to test the predicted $\xone(q)$ directly
-        (the coverage, not a fitted exponent, is the observable).
-    \end{enumerate}
+    The coverage variable $x$ retains its role as the definition of the observable
+    $\xone$~\eqref{eq:x1}, but the law of $\xone$ is combinatorial (interval growth against exact
+    sphere counts), not diffusive: as noted in Remark~\ref{prop:gap}, the spectral gap
+    $\lambda_2$ never enters the rank dynamics.
 
-    The same machinery is the bridge to the per-generation depths $n_g$: by Remark~\ref{rem:marginal} they
-    are marginal-novelty stops governed by the same relaxation $\lambda_2$, so a law for $\xone$ is the
-    template for the corresponding per-generation coverages.
-
-  \section{Status}
+  \section{Status and consequences}
     \label{sec:status}
 
     \begin{itemize}[nosep]
-      \item \emph{Proved / robust:} $D = 4$ growth, $\Bball \sim \Cheis n^4$ (Prop.~\ref{prop:growth});
-        $\lambda_2 = \Theta(1/q^2)$, $\approx 4\pi^2/q^2$ (Prop.~\ref{prop:gap}); and the exact reduction
-        identity~\eqref{eq:reduction} (Prop.~\ref{prop:reduction}).
-      \item \emph{Established empirically / model-free (range-limited):} $\none(q)/q \to 0$ (the linear
-        law is excluded out of sample, O28); $\xone(q)$ decreases ($0.61 \to 0.15$ over
-        $q = 101\text{--}601$); the constant-coverage scenario is excluded; the observed effective
-        exponent of $\none$ is $\approx 0.30\text{--}0.33$.
-      \item \emph{Open:} the asymptotic law of $\xone(q)$ (logarithmic vs.\ power), the ansatz~\eqref{eq:star}
-        and its $\Phi$, and the resolution of the tension~\eqref{eq:tension}.
+      \item \emph{Proved, deterministic:} the character reduction (Proposition~\ref{prop:character});
+        the exact interval formula~\eqref{eq:interval}; the universal bounds
+        $2 \le \Delta r_c(n) \le 2\lvert\Tp\rvert \le 18$; the shellwise resonance
+        law~\eqref{eq:shellwise}; the strict crossing $n_*(10^{-3}) = 22$ on exact spheres;
+        $\none(q) \le 22$ and $\xone(q) \asymp q^{-2}$ for $q \ge 311$
+        (Theorem~\ref{thm:main}(i)); the window-closure Corollary~\ref{cor:window}.
+      \item \emph{Proved, probabilistic:} $\none(q) \to 22$ and $q^2\xone(q) \to 99{,}689$ in
+        probability under uniform generic block sampling (Theorem~\ref{thm:main}(ii)), with a
+        conservative explicit bound (Remark~\ref{rem:conservative}).
+      \item \emph{Empirical:} the measured transitional values of Table~\ref{tab:x1}, explained by
+        the resonance mechanism of Theorem~\ref{thm:shellwise}.
+      \item \emph{Not claimed:} almost-sure statements for the literal fixed-seed software
+        sequence; sharp finite-$q$ probability constants; central-coordinate sensitivity of this
+        observable; any mass-hierarchy mechanism.
     \end{itemize}
 
+    \paragraph{Consequence for the spatial-limit programme.}
+      In the dual-window limit of the canonical Fourier filtration~\cite{Beau2026q5a}, the
+      potential coefficient is $\lambda = \lim_{q\to\infty} \xone(q)/\Cheis$.
+      Theorem~\ref{thm:main}(i) gives $\lambda = 0$: the dual-window limit carries no oscillator
+      potential and reduces to the free Dirichlet form.
+      This closes the only identified conditional route from that harmonic confinement toward a
+      spatial limit operator.
+      It neither proves nor disproves hypothesis [H-L] of the emergent-geometry sub-programme by
+      any other construction; the present result is spectral only.
+
+    \subsection{Interpretive outlook}
+      \label{sec:outlook}
+
+      The following is a structural reading, not a result.
+      The theorem says that the finite Weil--BFS observable has a \emph{finite novelty horizon}:
+      beyond depth $22$ --- a constant fixed by the threshold and by exact sphere counts of the
+      infinite Heisenberg group, independent of the arithmetic size $q$ of the substrate ---
+      exploration creates no above-threshold density of new spectral directions per visited vertex.
+      Novelty of this observable is a local, combinatorial phenomenon (growth of a sumset of at
+      most nine progression classes), not a diffusive or spectral one; enlarging the universe of
+      configurations deepens the transitional regime but never the horizon itself.
+      Within the Cosmochrony programme this sharpens the reading of window-based capacity
+      exponents: they are properties of a bounded relational neighbourhood of the origin, and
+      their implemented extraction window closes once its proxy lower edge passes the horizon
+      (Corollary~\ref{cor:window}).
+
     \paragraph{Data and Code Availability.}
-      The window-depth measurement (\texttt{n1\_resumable.py}, multicore \texttt{n1\_parallel.py}), the
-      ball-growth constant (\texttt{cheis\_ballgrowth.py}, $\Cheis \approx 0.427$, $D = 4$), and the
-      spectral-gap scaling (\texttt{lambda2\_scaling.py}, $\lambda_2 q^2 \to 4\pi^2$) are in the
-      \texttt{simulation/spectral/o25} directory of the Cosmochrony repository.
-      Both depth scripts reproduce the O28 values $\{29,61,101,151,211\} \mapsto \{4,8,11,13,14\}$ exactly.
+      The window-depth measurement (\texttt{n1\_resumable.py}, multicore
+      \texttt{n1\_parallel.py}), the ball-growth constant (\texttt{cheis\_ballgrowth.py},
+      $\Cheis \approx 0.427$, $D = 4$), and the spectral-gap scaling
+      (\texttt{lambda2\_scaling.py}) are in the Cosmochrony repository, directory
+      \texttt{admissibility/o25/code}.
+      Both depth scripts reproduce the O28 values $4, 8, 11, 13, 14$ at
+      $q = 29, 61, 101, 151, 211$ exactly.
+      The exact sphere counts of Table~\ref{tab:spheres} and the central-extent identity
+      $\lfloor n^2/4\rfloor$ are reproduced by \texttt{code/h3z\_spheres.py} in this repository
+      (exact integer BFS of $H_3(\mathbb{Z})$ to depth $31$).
 
     \paragraph{Acknowledgements.}
       AI-assisted tools were used during the preparation of this work.
@@ -339,6 +681,6 @@
 
   \newpage
   \bibliographystyle{plain}
-  \bibliography{cosmochrony-bibliography}
+  \bibliography{cosmochrony-bibliography,external-refs}
 
 \end{document}
